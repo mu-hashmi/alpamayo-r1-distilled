@@ -244,22 +244,32 @@ src/distillation/
 │   ├── config.py              # ModelConfig dataclass + presets
 │   ├── encoder.py             # ResNet backbone + BEV projection
 │   ├── decoder.py             # Transformer decoder + heads
+│   ├── multimodal_decoder.py  # Multi-modal trajectory prediction
 │   ├── unicycle.py            # Unicycle kinematic integrator
 │   ├── baseline_student.py    # Trajectory-only model
 │   └── reasoning_student.py   # + Reasoning head
 ├── encoders/
+│   ├── base.py                # Base encoder interface
+│   ├── camera_encoder.py      # Multi-camera encoder
 │   ├── raster_encoder.py      # BEV raster encoder (nuScenes)
 │   └── vector_encoder.py      # Vectorized encoder (Argoverse 2)
 ├── datasets/
-│   ├── nuscenes.py            # nuScenes dataset adapter
-│   └── argoverse2.py          # Argoverse 2 dataset adapter
+│   ├── base.py                # Base dataset interface
+│   ├── physicalai.py          # PhysicalAI-AV data loading
+│   ├── nuscenes_dataset.py    # nuScenes dataset adapter
+│   └── argoverse2_dataset.py  # Argoverse 2 dataset adapter
+├── benchmarks/
+│   └── output_adapters.py     # Benchmark output format adapters
 ├── training/
 │   ├── state.py               # TrainingState management
 │   ├── loops.py               # Train/validation epoch loops
-│   └── benchmark_loops.py     # Benchmark-specific training
-├── dataset.py                 # PhysicalAI-AV data loading
+│   ├── validation.py          # Validation metrics and logging
+│   ├── checkpoint.py          # Checkpoint save/load
+│   ├── ema.py                 # Exponential moving average
+│   └── schedules.py           # Learning rate schedules
 ├── losses.py                  # Trajectory + contrastive losses
 ├── calibration.py             # Camera math + BEV projector
 ├── cli.py                     # Argument parsing
+├── export.py                  # Export to HuggingFace format
 └── train.py                   # Training entry point
 ```
